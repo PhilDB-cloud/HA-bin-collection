@@ -2,11 +2,6 @@
 Home assistant: Mid and East Antrim bin refuse collection integration
 
 ## Important note: troubleshooting
-
-If you don't manage to scrape the value you are looking for, please [enable debug logging](#debug-logging) and `log_response`. This will provide you with a lot of information for continued investigation. `log_response` will write all responses to files. If the value you want to scrape is not in the files with the output from BeautifulSoup (\*-soup.txt), Multiscrape will not be able to scrape it. Most likely it is retrieved in the background by javascript. Your best chance in this case, is to investigate the network traffic in de developer tools of your browser, and try to find a json response containing the value you are looking for.
-
-Check the [wiki](https://github.com/danieldotnl/ha-multiscrape/wiki) for a scraping guide and other details on the functionality of the multiscrape component.
-
 If the yaml is incorrect the check that it doesn't identify an area that you have changed.
 
 If no values are returned then manually check that the site url for your street (see below) is correct and available through a browser.  Sometimes the response is slow for the site.
