@@ -35,6 +35,8 @@ multiscrape: !include multiscrape.yaml
 
 You will need to find the url for your street to add into the first line of multiscrape.yaml.  Go to https://www.midandeastantrim.gov.uk/resident/waste-recycling/collection-dates/ and select your town and street.  You will then be directed to a page with your street's bin collection details.  Copy that url from the address bar and paste it into the first line of the multicrape.yaml after '- resourse: ', replacing the placeholder that is already in the file
 
+when I installed the holiday helper it gave me the name 'states.calendar.holidays_11b3cbaf1a291c5f5f6a5fcea6dd02f7.attributes.holidays' .  If yours is different then pklease update the Yaml to reflect.
+
 Save your changes and go to the developer section to check the yaml is valid and then restart Home Assistant.
 
 ## Sensors
