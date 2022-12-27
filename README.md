@@ -2,9 +2,11 @@
 Home assistant: Mid and East Antrim bin refuse collection integration
 
 ## Important note: troubleshooting
-If the yaml is incorrect the check that it doesn't identify an area that you have changed.
+If the yaml is incorrect then please check that it doesn't identify an area that you have changed before reporting an issue.
 
 If no values are returned then manually check that the site url for your street (see below) is correct and available through a browser.  Sometimes the response is slow for the site.
+
+If the holiday sensors are not working then it is likely to be that you haven't installed it properly or the name is wrong.
 
 # HA Mid and East Antrim refuse collection custom component
 
