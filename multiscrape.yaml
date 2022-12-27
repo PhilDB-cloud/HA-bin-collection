@@ -1,0 +1,86 @@
+- resource: https://www.midandeastantrim.gov.uk/waste-recycling/results/eyJy......
+  scan_interval: 28800
+  sensor:
+    - unique_id: next_bin_collection
+      name: Next Bin Collection
+      select: "div:nth-child(4) > ul:nth-child(2) > li:nth-child(1)"
+      icon: mdi:delete
+      value_template: >
+         {% if ((as_timestamp(strptime(value[5:-1], "%A %d %B %Y"))-as_timestamp(now().replace(hour=0, minute=0, second=0, microsecond=0))) / 86400) < 8 %}
+            {{ "Black" }}
+         {% else %}
+            {{ "Brown" }}
+         {% endif %}
+      attributes: 
+        - name: Collection Day
+          select: "div:nth-child(4) > ul:nth-child(2) > li:nth-child(1)"
+          value_template: '{{value[5:-1].split(" ")[0]}}'
+        - name: Next Black Bin Collection
+          select: "div:nth-child(4) > ul:nth-child(2) > li:nth-child(1)"
+          value_template: '{{(value[5:-1])}}'
+        - name: Days to Black Bin Collection
+          select: "div:nth-child(4) > ul:nth-child(2) > li:nth-child(1)"
+          value_template: >-
+            '{{ ((as_timestamp(strptime(value[5:-1], "%A %d %B %Y"))-as_timestamp(now().replace(hour=0, minute=0, second=0, microsecond=0))) / 86400) | round(0) }}'
+        - name: Next Brown Bin Collection
+          select: "div:nth-child(4) > ul:nth-child(4) > li:nth-child(1)"
+          value_template: '{{(value[5:-1])}}'
+        - name: Days to Brown Bin Collection
+          select: "div:nth-child(4) > ul:nth-child(4) > li:nth-child(1)"
+          value_template: '{{ ((as_timestamp(strptime(value[5:-1], "%A %d %B %Y"))-as_timestamp(now().replace(hour=0, minute=0, second=0, microsecond=0))) / 86400) | round(0) }}'
+    - unique_id: next_bin_collection_black
+      name: Next Black Bin Collection
+      select: "div:nth-child(4) > ul:nth-child(2) > li:nth-child(1)"
+      value_template: '{{(value[5:-1])}}'
+      icon: mdi:calendar-month
+    - unique_id: next_bin_days_away_black
+      name: Days to Next Black Bin Collection
+      select: "div:nth-child(4) > ul:nth-child(2) > li:nth-child(1)"
+      value_template: >-
+        {{ ((as_timestamp(strptime(value[5:-1], "%A %d %B %Y"))-as_timestamp(now().replace(hour=0, minute=0, second=0, microsecond=0))) / 86400) | round(0) }}
+      icon: mdi:timer-sand
+    - unique_id: next_bin_collection_brown
+      name: Next Brown Bin Collection
+      select: "div:nth-child(4) > ul:nth-child(4) > li:nth-child(1)"
+      value_template: '{{(value[5:-1])}}'
+      icon: mdi:calendar-month
+    - unique_id: next_bin_days_away_brown
+      name: Days to Next Brown Bin Collection
+      select: "div:nth-child(4) > ul:nth-child(4) > li:nth-child(1)"
+      value_template: >-
+        {{ ((as_timestamp(strptime(value[5:-1], "%A %d %B %Y"))-as_timestamp(now().replace(hour=0, minute=0, second=0, microsecond=0))) / 86400) | round(0) }}
+      icon: mdi:timer-sand
+    - unique_id: next_bin_days_away
+      name: Days to Next Collection
+      value_template: >
+         {% if states('sensor.next_bin_collection') == "Black" %}
+            {{ states('sensor.next_bin_days_away_black') }}
+         {% else %}
+            {{ states('sensor.next_bin_days_away_brown') }}
+         {% endif %}   
+      icon: mdi:timer-sand
+    - unique_id: next_bin_collection_date
+      name: Collection Date
+      value_template: >
+         {% if states('sensor.next_bin_collection') == "Black" %}
+            {{ states('sensor.next_bin_collection_black') }}
+         {% else %}
+            {{ states('sensor.next_bin_collection_brown') }}
+         {% endif %}
+      icon: mdi:calendar-month
+    - unique_id: next_bin_holiday_name
+      name: Collection Day Holiday Name
+      value_template: >
+         {{  states.calendar.holidays_11b3cbaf1a291c5f5f6a5fcea6dd02f7.attributes.holidays.get((strptime(states("sensor.next_bin_collection_date"), "%A %d %B %Y").strftime("%Y-%m-%d"))) }}
+      icon: mdi:island
+    - unique_id: next_bin_is_a_holiday
+      name: Next Collection Day is a Holiday
+      value_template: >
+         {% if  states('sensor.next_bin_holiday_name') == 'None' %}
+            {{ no }}
+         {% else %}
+            {{ yes }}
+         {% endif %}
+      icon: mdi:island
+
+      
