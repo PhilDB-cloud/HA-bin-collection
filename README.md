@@ -1,2 +1,2 @@
 # HA-bin-collection
-Home assistant; bin collection integration
+Home assistant: Mid and East Antrim bin refuse collection integration
