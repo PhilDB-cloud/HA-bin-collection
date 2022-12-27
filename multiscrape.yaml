@@ -6,7 +6,7 @@
       select: "div:nth-child(4) > ul:nth-child(2) > li:nth-child(1)"
       icon: mdi:delete
       value_template: >
-         {% if ((as_timestamp(strptime(value[5:-1], "%A %d %B %Y"))-as_timestamp(now().replace(hour=0, minute=0, second=0, microsecond=0))) / 86400) < 8 %}
+         {% if ((as_timestamp(strptime(value[5:-1], "%A %d %B %Y"))-as_timestamp(now().replace(hour=0, minute=0, second=0, microsecond=0))) / 86400) < 7 %}
             {{ "Black" }}
          {% else %}
             {{ "Brown" }}
@@ -77,10 +77,8 @@
       name: Next Collection Day is a Holiday
       value_template: >
          {% if  states('sensor.next_bin_holiday_name') == 'None' %}
-            {{ no }}
+            {{ false }}
          {% else %}
-            {{ yes }}
+            {{ true }}
          {% endif %}
       icon: mdi:island
-
-      
