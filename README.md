@@ -12,6 +12,8 @@ This integration is intended for residents of Northern Ireland in the Mid and Ea
 
 This component uses the Multiscrape component to pull the relevant data from the council website and create relevant sensors in Home Assistant so that you can be reminded which bin to put out this week and when.  There are sensors for how many days until collection so that automations can be created for reminders the day before and also sensors to alert to public holidays in case the collection date has been moved to another day (which isn't reflected on the published schedule of collections).
 
+The sensors update every 8 hours.  There should be no need to run it more frequently than that although you may decide to run it less frequently, in which case update the scan_interval to the appropriate number of seconds.  
+
 
 ## Installation
 
