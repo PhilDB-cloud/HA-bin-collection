@@ -6,7 +6,7 @@ If the yaml is incorrect then please check that it doesn't identify an area that
 
 If no values are returned then manually check that the site url for your street (see below) is correct and available through a browser.  Sometimes the response is slow for the site.
 
-If the holiday sensors are not working then it is likely to be that you haven't installed it properly or the name is wrong.
+If the holiday sensors are not working then check that you have restarted after install and that the the name matches that in the multiscrape.yaml.
 
 # HA Mid and East Antrim refuse collection custom component
 
@@ -35,7 +35,7 @@ Add the following line to your configuration.yaml file and then copy the multisc
 multiscrape: !include multiscrape.yaml
 ```
 
-You will need to find the url for your street to add into the first line of multiscrape.yaml.  Go to https://www.midandeastantrim.gov.uk/resident/waste-recycling/collection-dates/ and select your town and street.  You will then be directed to a page with your street's bin collection details.  Copy that url from the address bar and paste it into the first line of the multicrape.yaml after '- resourse: ', replacing the placeholder that is already in the file
+You will need to find the url for your street to add into the first line of multiscrape.yaml.  Go to https://www.midandeastantrim.gov.uk/resident/waste-recycling/collection-dates/ and select your town and street.  You will then be directed to a page with your street's bin collection details.  Copy that url from the address bar and paste it into the first line of the multiscrape.yaml after '- resourse: ', replacing the placeholder that is already in the file
 
 when I installed the holiday helper it gave me the name 'states.calendar.holidays_11b3cbaf1a291c5f5f6a5fcea6dd02f7.attributes.holidays' .  If yours is different then pklease update the Yaml to reflect.
 
@@ -75,7 +75,7 @@ Depending on your issue, also consider enabling `log_response`.
 
 ### Contributions are welcome!
 
-I'm not totally sure what I am doing in relation to all of this so please feel free to suggest any improvements (preferably not just code refactoring)
+I'm not totally sure what I am doing in relation to all of this so please feel free to suggest any improvements
 
 ### Credits
 
